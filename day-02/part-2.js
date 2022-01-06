@@ -1,13 +1,16 @@
 function moveUp(currentPosition, step) {
-  currentPosition.depth -= step;
+  currentPosition.aim -= step;
 }
 
 function moveDown(currentPosition, step) {
-  currentPosition.depth += step;
+  currentPosition.aim += step;
 }
 
 function moveForward(currentPosition, step) {
   currentPosition.horizontal += step;
+  if (currentPosition.aim) {
+    currentPosition.depth += step * currentPosition.aim;
+  }
 }
 
 const Move = {
@@ -16,8 +19,8 @@ const Move = {
   forward: moveForward,
 };
 
-function getSubmarinePosition(moveOrders) {
-  const submarinePosition = { horizontal: 0, depth: 0 };
+function getSubmarineWithAimPosition(moveOrders) {
+  const submarinePosition = { horizontal: 0, depth: 0, aim: 0 };
 
   moveOrders.forEach(([position, step]) =>
     Move[position]?.(submarinePosition, step)
@@ -26,4 +29,4 @@ function getSubmarinePosition(moveOrders) {
   return submarinePosition;
 }
 
-module.exports = getSubmarinePosition;
+module.exports = getSubmarineWithAimPosition;
