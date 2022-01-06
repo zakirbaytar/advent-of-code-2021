@@ -1,4 +1,4 @@
-const { calculateSumForGivenWindow } = require("./utils");
+const { calculateSumForGivenWindow } = require("../utils");
 
 function countDepthIncreasesOfSlidingWindow(depthMeasurements, window) {
   let increased = 0;
