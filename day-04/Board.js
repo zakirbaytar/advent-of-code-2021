@@ -6,6 +6,7 @@ class Board {
     this.board = board;
     this.lookupBoard = lookupBoard;
     this.unmarkedTileSum = input.reduce((sum, rows) => sumArray(rows) + sum, 0);
+    this.isFinished = false;
   }
 
   has(value) {
@@ -43,7 +44,10 @@ class Board {
         if (tile.marked) markedTiles++;
       }
 
-      if (markedTiles === 5) return true;
+      if (markedTiles === 5) {
+        this.isFinished = true;
+        return true;
+      }
     }
 
     return false;
