@@ -15,7 +15,7 @@ function calculateOverlappingLineCount(hydrothermalVentMap) {
 
   const lines = hydrothermalVentMap.map(([from, to]) => new Line(from, to));
   for (const line of lines) {
-    const points = line.getCoordinates();
+    const points = line.getPoints();
     for (const point of points) {
       if (coordinates[point]) {
         coordinates[point]++;

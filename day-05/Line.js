@@ -21,36 +21,36 @@ class Line {
     }
   }
 
-  get verticalCoordinates() {
-    const coordinates = [];
+  get verticalPoints() {
+    const points = [];
 
     const start = Math.min(this.from.y, this.to.y);
     const end = Math.max(this.from.y, this.to.y);
 
     for (let i = start; i <= end; i++) {
       const key = `${this.from.x}-${i}`;
-      coordinates.push(key);
+      points.push(key);
     }
 
-    return coordinates;
+    return points;
   }
 
-  get horizontalCoordinates() {
-    const coordinates = [];
+  get horizontalPoints() {
+    const points = [];
 
     const start = Math.min(this.from.x, this.to.x);
     const end = Math.max(this.from.x, this.to.x);
 
     for (let i = start; i <= end; i++) {
       const key = `${i}-${this.from.y}`;
-      coordinates.push(key);
+      points.push(key);
     }
 
-    return coordinates;
+    return points;
   }
 
-  get diagonalCoordinates() {
-    const coordinates = [];
+  get diagonalPoints() {
+    const points = [];
     const rowStart = this.from.x;
     const columnStart = this.from.y;
 
@@ -64,23 +64,23 @@ class Line {
       const rowValue = rowStart + horizontalStep * i;
       const columnValue = columnStart + verticalStep * i;
       const key = `${rowValue}-${columnValue}`;
-      coordinates.push(key);
+      points.push(key);
       i++;
     }
 
-    return coordinates;
+    return points;
   }
 
-  getCoordinates() {
+  getPoints() {
     const direction = this.getDirection();
 
     switch (direction) {
       case Direction.Vertical:
-        return this.verticalCoordinates;
+        return this.verticalPoints;
       case Direction.Horizontal:
-        return this.horizontalCoordinates;
+        return this.horizontalPoints;
       case Direction.Diagonal:
-        return this.diagonalCoordinates;
+        return this.diagonalPoints;
     }
   }
 }
